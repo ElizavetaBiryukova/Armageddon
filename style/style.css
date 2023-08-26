@@ -29,6 +29,8 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     font-family: var(--basic-font);
     font-size: 16px;
@@ -49,11 +51,14 @@ body {
 
 .description {
     width: 80%;
-    margin-bottom: 32px;
+    margin-bottom: 9px;
 }
 
 .main {
     margin: auto 0% auto 16%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -66,7 +71,7 @@ body {
 .units {
     display: flex;
     gap: 3px;
-    margin-bottom: 23px;
+    margin-bottom: 6px;
 }
 
 .unit {
@@ -191,4 +196,99 @@ body {
     width: 2px;
     top: 0px;
     left: -21px;
+}
+
+.trash-wrapper {
+    position: fixed;
+    display: flex;
+    /* display: none; */
+    justify-content: space-around;
+    padding: 14px 0px;
+    background-color: var(--dark-grey);
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.trash-title {
+    font-weight: 700;
+}
+
+.send {
+    background-color: var(--orange);
+    border: none;
+    border-radius: 40px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+}
+
+@media (min-width: 420px) {
+    .main {
+        margin: auto 5% auto 20%;
+    }
+}
+
+@media (min-width: 1025px) {
+    body {
+        background: var(--black) url(../images/planeta.png) no-repeat left -74px top 138px;
+    }
+
+    .description {
+        margin-bottom: 0px;
+    }
+
+    .main {
+        width: 30%;
+        margin: auto;
+    }
+
+    .trash-wrapper {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 38px;
+        padding: 14px 22px;
+        width: max-content;
+        bottom: 256px;
+        left: 404px;
+        border-radius: 24px;
+    }
+
+    .send {
+        padding: 9px 12px;
+    }
+
+    .footer {
+        display: none;
+    }
+}
+
+@media (min-width: 1356px) {
+    body {
+        background: var(--black) url(../images/planeta_big.png) no-repeat left -135px top 138px;
+    }
+
+    .main {
+        width: 23%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 2100px) {
+    body {
+        background: var(--black) url(../images/planeta_big.png) no-repeat left 91px top 138px;
+    }
+
+    .trash-wrapper {
+        bottom: 256px;
+        left: 646px;
+    }
 }
