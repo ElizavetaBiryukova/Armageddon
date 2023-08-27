@@ -1,7 +1,8 @@
 .logo {
-    font-family: var(--logo-font);
+    font-size: 32px;
     color: var(--orange);
     margin-bottom: 14px;
+    margin-top: 15px;
 }
 
 .description {
