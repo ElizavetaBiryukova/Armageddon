@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Helvetica';
     font-weight: 400;
     src: url('../fonts/helvetica_regular.woff') format('woff');
@@ -41,18 +41,9 @@ body {
     margin: 0;
     padding: 0px 16px;
     background: var(--black) url('../images/planeta.png') no-repeat left -330px top 124px;
-}
+} */
 
-.logo {
-    font-family: var(--logo-font);
-    color: var(--orange);
-    margin-bottom: 14px;
-}
 
-.description {
-    width: 80%;
-    margin-bottom: 9px;
-}
 
 .main {
     margin: auto 0% auto 16%;
@@ -225,11 +216,6 @@ body {
     line-height: 24px;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0px;
-}
-
 .asteroid {
     margin-top: 50px;
 }
@@ -245,13 +231,6 @@ body {
 }
 
 @media (min-width: 1025px) {
-    body {
-        background: var(--black) url(../images/planeta.png) no-repeat left -74px top 138px;
-    }
-
-    .description {
-        margin-bottom: 0px;
-    }
 
     .main {
         width: 30%;
@@ -273,17 +252,9 @@ body {
     .send {
         padding: 9px 12px;
     }
-
-    .footer {
-        display: none;
-    }
 }
 
 @media (min-width: 1356px) {
-    body {
-        background: var(--black) url(../images/planeta_big.png) no-repeat left -135px top 138px;
-    }
-
     .main {
         width: 23%;
         margin: auto;
@@ -291,10 +262,6 @@ body {
 }
 
 @media (min-width: 2100px) {
-    body {
-        background: var(--black) url(../images/planeta_big.png) no-repeat left 91px top 138px;
-    }
-
     .trash-wrapper {
         bottom: 256px;
         left: 646px;

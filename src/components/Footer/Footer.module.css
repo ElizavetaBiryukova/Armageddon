@@ -1,0 +1,10 @@
+.footer {
+    position: fixed;
+    bottom: 0px;
+}
+
+@media (min-width: 1025px) {
+    .footer {
+        display: none;
+    }
+}

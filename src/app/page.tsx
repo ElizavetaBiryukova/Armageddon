@@ -1,94 +1,62 @@
 import Image from 'next/image'
-import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <main className="main">
+      <h2 className="title">Ближайшие подлёты астероидов</h2>
+      <div className="units">
+        <button className="unit">в километрах</button>
+        <div>|</div>
+        <button className="unit unit-current">в лунных орбитах</button>
+      </div>
+      <ul className="cards">
+        <li className="card">
+          <div className="date">12 сент 2023</div>
+          <div className="data">
+            <div className="distance">3 лунные орбиты</div>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+              src="/asteroid-mini.png"
+              alt="" className="image"
+              height={26}
+              width={26}
             />
-          </a>
+            <div>
+              <div className="name">2021 FQ</div>
+              <div className="size">85 м</div>
+            </div>
+          </div>
+          <div className="options">
+            <button className="order">заказать</button>
+            <div className="note">Опасен</div>
+          </div>
+        </li>
+        <li className="card">
+          <div className="date">12 сент 2023</div>
+          <div className="data">
+            <div className="distance">3 лунные орбиты</div>
+            <Image
+              src="/asteroid-mini.png"
+              alt="" className="image"
+              height={26}
+              width={26}
+            />
+            <div>
+              <div className="name">2021 FQ</div>
+              <div className="size">85 м</div>
+            </div>
+          </div>
+          <div className="options">
+            <button className="order">заказать</button>
+            <div className="note">Опасен</div>
+          </div>
+        </li>
+      </ul>
+      <div className="trash-wrapper">
+        <div>
+          <div className="trash-title">Корзина</div>
+          <div className="quantity">2 астероида</div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <button className="send">Отправить</button>
       </div>
     </main>
   )

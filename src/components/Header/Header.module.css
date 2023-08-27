@@ -1,0 +1,16 @@
+.logo {
+    font-family: var(--logo-font);
+    color: var(--orange);
+    margin-bottom: 14px;
+}
+
+.description {
+    width: 80%;
+    margin-bottom: 9px;
+}
+
+@media (min-width: 1025px) {
+    .description {
+        margin-bottom: 0px;
+    }
+}
