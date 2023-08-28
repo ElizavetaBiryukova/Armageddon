@@ -1,5 +1,6 @@
 import { AsteroidsList } from "@/components/AsteroidsList/AsteroidsList"
 import styles from './page.module.css'
+import { TrashCan } from "@/components/TrashCan/TrashCan"
 
 export default function Home() {
   return (
@@ -11,13 +12,7 @@ export default function Home() {
         <button className={`${styles.unit} ${styles.unitCurrent}`}>в лунных орбитах</button>
       </div>
       <AsteroidsList />
-      <div className="trash-wrapper">
-        <div>
-          <div className="trash-title">Корзина</div>
-          <div className="quantity">2 астероида</div>
-        </div>
-        <button className="send">Отправить</button>
-      </div>
+      <TrashCan />
     </main>
   )
 }
