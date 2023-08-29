@@ -22,3 +22,11 @@ export const changesDate = (date: string) => {
 
     return `${day} ${MONTHS[indexMonth]} ${year}`
 }
+
+export const removesBrackets = (string: string) => {
+    return string.split('').splice(1, string.length - 2).join('');
+}
+
+export const roundsString = (string: string) => {
+    return Math.round(Number(string)).toString();
+}
