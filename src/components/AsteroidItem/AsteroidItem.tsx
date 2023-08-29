@@ -6,15 +6,18 @@ import { NearEarthObject } from '@/types/types';
 import { changesDate, removesBrackets, roundsString, changesOrbits } from '@/utils/changeAsteroidCard';
 
 
-
 type AsteroidsListProps = {
     asteroids: NearEarthObject;
 }
 
+const SIZE_BIG_ASTEROID = 500;
+const SIZE_BIG_IMAGE = 40;
+const SIZE_SMALL_IMAGE = 40;
+
+
 export const AsteroidsItem = ({ asteroids }: AsteroidsListProps): JSX.Element => {
     const size = Math.round(asteroids.estimated_diameter.meters.estimated_diameter_max);
     const distance = asteroids.close_approach_data[0].miss_distance.lunar;
-
     return (
         <>
             <li className={styles.card}>
@@ -22,10 +25,10 @@ export const AsteroidsItem = ({ asteroids }: AsteroidsListProps): JSX.Element =>
                 <div className={styles.data}>
                     <div className={styles.distance}>{roundsString(distance)} {changesOrbits(distance)}</div>
                     <Image
-                        src={size > 500 ? asteroidMax : asteroidMini}
+                        src={size > SIZE_BIG_ASTEROID ? asteroidMax : asteroidMini}
                         alt="" className={styles.image}
-                        height={size > 500 ? 40 : 26}
-                        width={size > 500 ? 40 : 26}
+                        height={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
+                        width={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
                     />
                     <div>
                         <div className={styles.name}>{removesBrackets(asteroids.name)}</div>

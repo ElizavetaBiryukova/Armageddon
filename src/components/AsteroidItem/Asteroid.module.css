@@ -1,5 +1,6 @@
 .card {
     margin-bottom: 23px;
+    cursor: pointer;
 }
 
 .date {
@@ -76,6 +77,7 @@
     text-transform: uppercase;
     padding: 2px 12px;
     letter-spacing: 1.5px;
+    cursor: pointer;
 }
 
 .options {

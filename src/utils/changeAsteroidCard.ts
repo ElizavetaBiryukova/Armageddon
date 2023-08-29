@@ -24,7 +24,10 @@ export const changesDate = (date: string) => {
 }
 
 export const removesBrackets = (string: string) => {
-    return string.split('').splice(1, string.length - 2).join('');
+    if (string[0] === '(' && string[string.length - 1] === ')') {
+        return string.split('').splice(1, string.length - 2).join('');
+    }
+    return string;
 }
 
 export const roundsString = (string: string) => {

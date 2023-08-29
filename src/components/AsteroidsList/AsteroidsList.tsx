@@ -1,6 +1,5 @@
 import { AsteroidsItem } from '../AsteroidItem/AsteroidItem';
 import styles from './AsteroidsList.module.css';
-// import Image from 'next/image';
 import { NearEarthObject } from '@/types/types';
 
 

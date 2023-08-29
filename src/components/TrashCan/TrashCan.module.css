@@ -22,18 +22,20 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
+    cursor: pointer;
 }
 
 @media (min-width: 1025px) {
     .trashWrapper {
+        position: absolute;
         display: flex;
         flex-direction: column;
         gap: 38px;
         padding: 14px 22px;
         width: max-content;
-        bottom: 350px;
-        left: 70%;
-        border-radius: 24px;
+        bottom: 89%;
+        left: 114%;
+        border-radius: 24px
     }
 
     .send {
