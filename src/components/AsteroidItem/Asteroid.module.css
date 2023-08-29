@@ -42,6 +42,7 @@
 .distance {
     position: relative;
     height: max-content;
+    width: 26%;
     padding-bottom: 7px;
     border-bottom: 1px solid var(--grey);
 }
@@ -60,7 +61,7 @@
     content: '▸';
     width: 2px;
     top: 19px;
-    left: 120px;
+    left: 97%;
     color: var(--grey);
 }
 

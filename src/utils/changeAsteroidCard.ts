@@ -30,3 +30,15 @@ export const removesBrackets = (string: string) => {
 export const roundsString = (string: string) => {
     return Math.round(Number(string)).toString();
 }
+
+export const changesOrbits = (distance: string) => {
+    const lastDigit = Number(distance) % 10;
+    if (Number(distance) >= 11 && Number(distance) <= 13) {
+        return 'лунных орбит'
+    } else if (lastDigit === 1) {
+        return 'лунная орбита';
+    } else if (lastDigit >= 2 && lastDigit <= 3) {
+        return 'лунные орбиты';
+    }
+    return 'лунных орбит';
+}
