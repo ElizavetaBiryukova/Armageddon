@@ -19,6 +19,12 @@ export const changesDate = (date: string) => {
         'дек'
     ];
 
+    if (date.length > 10) {
+        const hours = newDate.getHours();
+        const minutes = newDate.getMinutes();
+
+        return `${day} ${MONTHS[indexMonth]} ${year} ${hours}:${minutes}`
+    }
 
     return `${day} ${MONTHS[indexMonth]} ${year}`
 }
@@ -44,4 +50,21 @@ export const changesOrbits = (distance: string) => {
         return 'лунные орбиты';
     }
     return 'лунных орбит';
+}
+
+export const translatesPlanets = (planet: string) => {
+    switch (planet) {
+        case 'Earth':
+            return 'Земли';
+        case 'Juptr':
+            return 'Юпитера';
+        case 'Mars':
+            return 'Марса';
+        case 'Merc':
+            return 'Меркурия';
+        case 'Venus':
+            return 'Венеры';
+        default:
+            planet
+    }
 }

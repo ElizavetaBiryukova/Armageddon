@@ -27,7 +27,7 @@ export interface NearEarthObject {
     },
     is_potentially_hazardous_asteroid: boolean,
     close_approach_data: CloseApproachData[],
-    is_sentry_object: boolean
+    is_sentry_object: boolean,
 }
 
 export interface CloseApproachData {

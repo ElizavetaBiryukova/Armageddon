@@ -12,12 +12,13 @@ type AsteroidsListProps = {
 
 const SIZE_BIG_ASTEROID = 500;
 const SIZE_BIG_IMAGE = 40;
-const SIZE_SMALL_IMAGE = 40;
+const SIZE_SMALL_IMAGE = 26;
 
 
 export const AsteroidsItem = ({ asteroids }: AsteroidsListProps): JSX.Element => {
     const size = Math.round(asteroids.estimated_diameter.meters.estimated_diameter_max);
     const distance = asteroids.close_approach_data[0].miss_distance.lunar;
+
     return (
         <>
             <li className={styles.card}>
