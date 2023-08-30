@@ -22,6 +22,12 @@ body {
   background: var(--black) url('/planeta.png') no-repeat left -330px top 124px;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 @media (min-width: 1025px) {
   body {
     background: var(--black) url('/planeta.png') no-repeat left -74px top 138px;
