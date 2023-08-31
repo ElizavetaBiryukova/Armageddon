@@ -1,13 +1,16 @@
+'use client'
+
 import styles from './Asteroid.module.css';
 import Image from 'next/image';
 import asteroidMini from '../../assets/images/asteroid-mini.png';
 import asteroidMax from '../../assets/images/asteroid-max.png';
 import { NearEarthObject } from '@/types/types';
-import { changesDate, removesBrackets, roundsString, changesOrbits } from '@/utils/changeAsteroidCard';
+import { changesDate, removesBrackets, roundsString, changesUnitsOrbits } from '@/utils/changeAsteroidCard';
 import Link from 'next/link';
 
 type AsteroidsListProps = {
     asteroids: NearEarthObject;
+    isUnit: boolean;
 }
 
 const SIZE_BIG_ASTEROID = 500;
@@ -15,9 +18,10 @@ const SIZE_BIG_IMAGE = 40;
 const SIZE_SMALL_IMAGE = 26;
 
 
-export const AsteroidsItem = ({ asteroids }: AsteroidsListProps): JSX.Element => {
+export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.Element => {
     const size = Math.round(asteroids.estimated_diameter.meters.estimated_diameter_max);
-    const distance = asteroids.close_approach_data[0].miss_distance.lunar;
+    const distanceLunar = asteroids.close_approach_data[0].miss_distance.lunar;
+    const distanceKm = asteroids.close_approach_data[0].miss_distance.kilometers;
 
     return (
         <>
@@ -25,7 +29,9 @@ export const AsteroidsItem = ({ asteroids }: AsteroidsListProps): JSX.Element =>
                 <Link href={`asteroid/${asteroids.id}`}>
                     <div className={styles.date}>{changesDate(asteroids.close_approach_data[0].close_approach_date)}</div>
                     <div className={styles.data}>
-                        <div className={styles.distance}>{roundsString(distance)} {changesOrbits(distance)}</div>
+                        <div className={styles.distance}>
+                            {isUnit ? `${roundsString(distanceLunar)} ${changesUnitsOrbits(distanceLunar)}` : `${roundsString(distanceKm)} км`}
+                        </div>
                         <Image
                             src={size > SIZE_BIG_ASTEROID ? asteroidMax : asteroidMini}
                             alt="" className={styles.image}

@@ -43,7 +43,7 @@
 .distance {
     position: relative;
     height: max-content;
-    width: 26%;
+    width: 29%;
     padding-bottom: 7px;
     border-bottom: 1px solid var(--grey);
 }

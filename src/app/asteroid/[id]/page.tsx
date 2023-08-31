@@ -1,6 +1,6 @@
 import styles from './Asteroid.module.css';
 import { getAsteroid } from "@/api/api";
-import { removesBrackets, roundsString, changesOrbits, changesDate, translatesPlanets } from '@/utils/changeAsteroidCard';
+import { removesBrackets, roundsString, changesUnitsOrbits, changesDate, translatesPlanets } from '@/utils/changeAsteroidCard';
 import { NearEarthObject } from '@/types/types';
 
 interface AsteroidProps {
@@ -27,9 +27,9 @@ const Asteroid = async ({ params }: AsteroidProps) => {
                     {asteroid.close_approach_data.map((el, i) => {
                         return (
                             <li className={styles.convergence} key={i}>
-                                <div className={styles.time}>Дата максимального сближения с Землей: {changesDate(el.close_approach_date_full)}</div>
+                                <div className={styles.time}> {i + 1}. Дата максимального сближения с Землей: {changesDate(el.close_approach_date_full)}</div>
                                 <div className={styles.speed}>Скорость относительно Земли: {roundsString(el.relative_velocity.kilometers_per_hour)} км/ч</div>
-                                <div className={styles.distance}>Расстояние до Земли: {roundsString(distance)} {changesOrbits(distance)}</div>
+                                <div className={styles.distance}>Расстояние до Земли: {roundsString(distance)} {changesUnitsOrbits(distance)}</div>
                                 <div className={styles.orbit}>Летит вокруг: {translatesPlanets(el.orbiting_body)}</div>
                             </li>
                         )

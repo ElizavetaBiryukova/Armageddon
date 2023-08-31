@@ -40,7 +40,7 @@ export const roundsString = (string: string) => {
     return Math.round(Number(string)).toString();
 }
 
-export const changesOrbits = (distance: string) => {
+export const changesUnitsOrbits = (distance: string) => {
     const lastDigit = Number(distance) % 10;
     if (Number(distance) >= 11 && Number(distance) <= 13) {
         return 'лунных орбит'
