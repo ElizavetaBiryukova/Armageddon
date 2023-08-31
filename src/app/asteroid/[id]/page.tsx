@@ -11,7 +11,7 @@ interface AsteroidProps {
 
 const Asteroid = async ({ params }: AsteroidProps) => {
     const asteroid: NearEarthObject = await getAsteroid(params.id);
-    console.log(asteroid)
+
     const size = Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max);
     const distance = asteroid.close_approach_data[0].miss_distance.lunar;
     return (

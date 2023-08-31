@@ -7,6 +7,8 @@ import asteroidMax from '../../assets/images/asteroid-max.png';
 import { NearEarthObject } from '@/types/types';
 import { changesDate, removesBrackets, roundsString, changesUnitsOrbits } from '@/utils/changeAsteroidCard';
 import Link from 'next/link';
+import { useInView } from 'react-intersection-observer';
+import { Spinner } from '../Spinner/Spinner';
 
 type AsteroidsListProps = {
     asteroids: NearEarthObject;
@@ -23,32 +25,46 @@ export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.El
     const distanceLunar = asteroids.close_approach_data[0].miss_distance.lunar;
     const distanceKm = asteroids.close_approach_data[0].miss_distance.kilometers;
 
+    const { ref, inView } = useInView({
+        threshold: 1,
+        // triggerOnce: true,
+    });
+
     return (
         <>
-            <li className={styles.card}>
-                <Link href={`asteroid/${asteroids.id}`}>
-                    <div className={styles.date}>{changesDate(asteroids.close_approach_data[0].close_approach_date)}</div>
-                    <div className={styles.data}>
-                        <div className={styles.distance}>
-                            {isUnit ? `${roundsString(distanceLunar)} ${changesUnitsOrbits(distanceLunar)}` : `${roundsString(distanceKm)} км`}
-                        </div>
-                        <Image
-                            src={size > SIZE_BIG_ASTEROID ? asteroidMax : asteroidMini}
-                            alt="" className={styles.image}
-                            height={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
-                            width={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
-                        />
-                        <div>
-                            <div className={styles.name}>{removesBrackets(asteroids.name)}</div>
-                            <div className={styles.size}>{size} м</div>
+            <li ref={ref} className={styles.card}>
+
+                {inView
+                    ?
+                    <div>
+                        <Link href={`asteroid/${asteroids.id}`}>
+                            <div className={styles.date}>{changesDate(asteroids.close_approach_data[0].close_approach_date)}</div>
+                            <div className={styles.data}>
+                                <div className={styles.distance}>
+                                    {isUnit ? `${roundsString(distanceLunar)} ${changesUnitsOrbits(distanceLunar)}` : `${roundsString(distanceKm)} км`}
+                                </div>
+                                <Image
+                                    src={size > SIZE_BIG_ASTEROID ? asteroidMax : asteroidMini}
+                                    alt="" className={styles.image}
+                                    height={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
+                                    width={size > SIZE_BIG_ASTEROID ? SIZE_BIG_IMAGE : SIZE_SMALL_IMAGE}
+                                />
+                                <div>
+                                    <div className={styles.name}>{removesBrackets(asteroids.name)}</div>
+                                    <div className={styles.size}>{size} м</div>
+                                </div>
+                            </div>
+                        </Link>
+                        <div className={styles.options}>
+                            <button className={styles.order}>заказать</button>
+                            {asteroids.is_potentially_hazardous_asteroid === true ? <div className={styles.note}>Опасен</div> : ''}
                         </div>
                     </div>
-                </Link>
-                <div className={styles.options}>
-                    <button className={styles.order}>заказать</button>
-                    {asteroids.is_potentially_hazardous_asteroid === true ? <div className={styles.note}>Опасен</div> : ''}
-                </div>
-            </li>
+                    :
+                    <Spinner />
+                }
+
+            </li >
         </>
     )
 };
