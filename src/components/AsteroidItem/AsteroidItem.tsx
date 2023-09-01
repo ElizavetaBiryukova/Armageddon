@@ -26,7 +26,7 @@ export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.El
     const distanceKm = asteroids.close_approach_data[0].miss_distance.kilometers;
 
     const { ref, inView } = useInView({
-        threshold: 1,
+        threshold: 0.5,
         // triggerOnce: true,
     });
 

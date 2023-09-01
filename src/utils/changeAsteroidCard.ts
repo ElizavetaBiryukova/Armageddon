@@ -37,7 +37,7 @@ export const removesBrackets = (string: string) => {
 }
 
 export const roundsString = (string: string) => {
-    return Math.round(Number(string)).toString();
+    return Math.round(Number(string)).toLocaleString();;
 }
 
 export const changesUnitsOrbits = (distance: string) => {
