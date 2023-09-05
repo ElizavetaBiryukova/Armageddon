@@ -48,8 +48,9 @@ export const changesUnitsOrbits = (distance: string) => {
         return 'лунная орбита';
     } else if (lastDigit >= 2 && lastDigit <= 3) {
         return 'лунные орбиты';
+    } else {
+        return 'лунных орбит';
     }
-    return 'лунных орбит';
 }
 
 export const translatesPlanets = (planet: string) => {

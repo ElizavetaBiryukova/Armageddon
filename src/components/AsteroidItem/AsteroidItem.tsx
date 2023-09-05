@@ -10,9 +10,11 @@ import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { Spinner } from '../Spinner/Spinner';
 
-type AsteroidsListProps = {
+type AsteroidsItemProps = {
     asteroids: NearEarthObject;
     isUnit: boolean;
+    order: Array<NearEarthObject>;
+    setOrder: React.Dispatch<React.SetStateAction<NearEarthObject[]>>;
 }
 
 const SIZE_BIG_ASTEROID = 500;
@@ -20,15 +22,22 @@ const SIZE_BIG_IMAGE = 40;
 const SIZE_SMALL_IMAGE = 26;
 
 
-export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.Element => {
+export const AsteroidsItem = ({ asteroids, isUnit, order, setOrder }: AsteroidsItemProps): JSX.Element => {
     const size = Math.round(asteroids.estimated_diameter.meters.estimated_diameter_max);
     const distanceLunar = asteroids.close_approach_data[0].miss_distance.lunar;
     const distanceKm = asteroids.close_approach_data[0].miss_distance.kilometers;
 
     const { ref, inView } = useInView({
         threshold: 0.5,
-        // triggerOnce: true,
     });
+
+
+    const handleOrder = () => {
+        setOrder([...order, asteroids])
+        console.log(order)
+        localStorage.setItem('order', JSON.stringify(order))
+    }
+
 
     return (
         <>
@@ -41,7 +50,7 @@ export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.El
                             <div className={styles.date}>{changesDate(asteroids.close_approach_data[0].close_approach_date)}</div>
                             <div className={styles.data}>
                                 <div className={styles.distance}>
-                                    {isUnit ? `${roundsString(distanceLunar)} ${changesUnitsOrbits(distanceLunar)}` : `${roundsString(distanceKm)} км`}
+                                    {isUnit ? `${roundsString(distanceLunar)} ${changesUnitsOrbits(roundsString(distanceLunar))}` : `${roundsString(distanceKm)} км`}
                                 </div>
                                 <Image
                                     src={size > SIZE_BIG_ASTEROID ? asteroidMax : asteroidMini}
@@ -56,7 +65,7 @@ export const AsteroidsItem = ({ asteroids, isUnit }: AsteroidsListProps): JSX.El
                             </div>
                         </Link>
                         <div className={styles.options}>
-                            <button className={styles.order}>заказать</button>
+                            <button className={styles.order} onClick={handleOrder}>заказать</button>
                             {asteroids.is_potentially_hazardous_asteroid === true ? <div className={styles.note}>Опасен</div> : ''}
                         </div>
                     </div>

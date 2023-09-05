@@ -1,13 +1,20 @@
 import styles from './TrashCan.module.css';
+import Link from 'next/link';
+import { NearEarthObject } from '@/types/types';
 
-export const TrashCan = (): JSX.Element => (
+type TrashCanProps = {
+    order: Array<NearEarthObject>;
+
+}
+
+export const TrashCan = ({ order }: TrashCanProps): JSX.Element => (
     <>
         <div className={styles.trashWrapper}>
             <div>
                 <div className={styles.trashTitle}>Корзина</div>
-                <div>2 астероида</div>
+                <div>{((order.length - 1) < 0) ? '0' : order.length - 1} астероида</div>
             </div>
-            <button className={styles.send}>Отправить</button>
+            <Link href='/order' className={styles.send}>Отправить</Link>
         </div>
     </>
 );

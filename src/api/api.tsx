@@ -1,5 +1,7 @@
-export async function getAsteroids(startDate: string) {
+export async function getAsteroids(date: Date) {
     const API_KEY = 'ZCGuGCtMddGab7STNs8RhetkPefDJsLeg0GANCzB';
+
+    const startDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + 7);

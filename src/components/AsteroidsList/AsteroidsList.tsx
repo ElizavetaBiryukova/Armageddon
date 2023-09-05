@@ -7,10 +7,13 @@ import { NearEarthObject } from '@/types/types';
 import { useInView } from 'react-intersection-observer';
 import { getAsteroids } from '@/api/api';
 import { Spinner } from '../Spinner/Spinner';
+import { TrashCan } from '../TrashCan/TrashCan';
 
 export const AsteroidsList = (): JSX.Element => {
     const [isActiveUnit, setActiveUnit] = useState<boolean>(true);
-    const [asteroidsList, setAsteroidsList] = useState<NearEarthObject[]>([])
+    const [asteroidsList, setAsteroidsList] = useState<NearEarthObject[]>([]);
+    const [order, setOrder] = useState<NearEarthObject[] | []>([]);
+
 
     const { ref, inView } = useInView({
         threshold: 0.5,
@@ -18,13 +21,13 @@ export const AsteroidsList = (): JSX.Element => {
     });
 
     const fetchAsteroids = async () => {
-        const startDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
-
-        const asteroids = await getAsteroids(startDate);
+        const day = new Date();
+        const asteroids = await getAsteroids(day);
+        day.setDate(day.getDate() + 7);
         const asteroidsObj: NearEarthObject = asteroids.near_earth_objects;
-        const newAsteroidsArr = Object.values(asteroidsObj).flat().reverse().flat();
+        const newAsteroidsArr = Object.values(asteroidsObj).flat().flat();
+        setAsteroidsList((asteroidsArr) => [...newAsteroidsArr, ...asteroidsArr]);
 
-        setAsteroidsList((asteroidsArr) => [...asteroidsArr, ...newAsteroidsArr]);
     }
 
 
@@ -42,17 +45,20 @@ export const AsteroidsList = (): JSX.Element => {
                 <button className={`${styles.unit} ${isActiveUnit && styles.unitCurrent}`} onClick={() => setActiveUnit(true)}>в лунных орбитах</button>
             </div>
             <ul className={styles.cards}>
-                {asteroidsList.map((asteroid) =>
+                {asteroidsList.map((asteroid, i) =>
                     <AsteroidsItem
-                        key={asteroid.id}
+                        key={i}
                         asteroids={asteroid}
                         isUnit={isActiveUnit}
+                        order={order}
+                        setOrder={setOrder}
                     />
                 )}
                 <div className={styles.cards} ref={ref}>
                     <Spinner />
                 </div>
             </ul>
+            <TrashCan order={order} />
         </>
     )
 };
