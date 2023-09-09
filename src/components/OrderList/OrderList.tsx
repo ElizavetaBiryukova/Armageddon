@@ -18,7 +18,7 @@ export const OrderList = (): JSX.Element => {
                         asteroids={asteroid}
                         isUnit={true}
                         order={[]}
-                    // setOrder={ }
+                        setOrder={() => []}
                     />
                 )}
             </ul>

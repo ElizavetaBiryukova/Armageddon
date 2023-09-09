@@ -30,12 +30,19 @@ export const AsteroidsList = (): JSX.Element => {
 
     }
 
-
     useEffect(() => {
         if (inView) {
             fetchAsteroids();
         }
     }, [inView]);
+
+
+    function compare(a: NearEarthObject, b: NearEarthObject) {
+        let dateA = new Date(a.close_approach_data[0].close_approach_date_full);
+        let dateB = new Date(b.close_approach_data[0].close_approach_date_full);
+
+        return dateA.valueOf() - dateB.valueOf();
+    }
 
     return (
         <>
@@ -45,7 +52,7 @@ export const AsteroidsList = (): JSX.Element => {
                 <button className={`${styles.unit} ${isActiveUnit && styles.unitCurrent}`} onClick={() => setActiveUnit(true)}>в лунных орбитах</button>
             </div>
             <ul className={styles.cards}>
-                {asteroidsList.map((asteroid, i) =>
+                {asteroidsList.sort(compare).map((asteroid, i) =>
                     <AsteroidsItem
                         key={i}
                         asteroids={asteroid}
@@ -58,7 +65,7 @@ export const AsteroidsList = (): JSX.Element => {
                     <Spinner />
                 </div>
             </ul>
-            <TrashCan order={order} />
+            <TrashCan />
         </>
     )
 };

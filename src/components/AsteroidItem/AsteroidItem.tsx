@@ -9,6 +9,8 @@ import { changesDate, removesBrackets, roundsString, changesUnitsOrbits } from '
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { Spinner } from '../Spinner/Spinner';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 type AsteroidsItemProps = {
     asteroids: NearEarthObject;
@@ -27,17 +29,23 @@ export const AsteroidsItem = ({ asteroids, isUnit, order, setOrder }: AsteroidsI
     const distanceLunar = asteroids.close_approach_data[0].miss_distance.lunar;
     const distanceKm = asteroids.close_approach_data[0].miss_distance.kilometers;
 
+    const local = localStorage.getItem('order')
+    const asteroidsOrder = local ? !!JSON.parse(local as string).filter((item: NearEarthObject) => item.id === asteroids.id).length : [].filter((item: NearEarthObject) => item.id === asteroids.id).length;
+
+    const [inOrder, setInOrder] = useState(asteroidsOrder);
+
+    const pathname = usePathname();
+
     const { ref, inView } = useInView({
         threshold: 0.5,
     });
 
-
     const handleOrder = () => {
-        setOrder([...order, asteroids])
-        console.log(order)
-        localStorage.setItem('order', JSON.stringify(order))
+        order.push(asteroids)
+        setOrder(order)
+        localStorage.setItem('order', JSON.stringify(order));
+        setInOrder(true);
     }
-
 
     return (
         <>
@@ -65,7 +73,15 @@ export const AsteroidsItem = ({ asteroids, isUnit, order, setOrder }: AsteroidsI
                             </div>
                         </Link>
                         <div className={styles.options}>
-                            <button className={styles.order} onClick={handleOrder}>заказать</button>
+                            {pathname !== '/order' && (
+                                <button
+                                    className={styles.order}
+                                    onClick={handleOrder}
+                                >
+                                    {inOrder ? 'В корзине' : 'Заказать'}
+                                </button>
+
+                            )}
                             {asteroids.is_potentially_hazardous_asteroid === true ? <div className={styles.note}>Опасен</div> : ''}
                         </div>
                     </div>
